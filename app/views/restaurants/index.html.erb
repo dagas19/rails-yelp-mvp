@@ -1,5 +1,13 @@
 <div class="container">
   <h1 class="text-center">Our Restaurants</h1>
+    <form action="">
+      <input type="text"
+       name="query"
+       value="<%= params[:member] %>"
+       placeholder="Who are you looking for?">
+       <input type="submit">
+    </form>
+
   <div class="row">
     <% @restaurants.each do |restaurant| %>
 
@@ -10,9 +18,13 @@
           <p><%= restaurant.address %></p>
         </div>
 
-        <%= link_to "See details >>>>>", restaurant_path(restaurant), class: "card-link" %>
+        <%= link_to "See details >>>>>", restaurant_path(restaurant), class: "card-link btn btn-light" %>
       </div>
     </div>
     <% end %>
   </div>
+</div>
+
+<div class="btn btn-success">
+  <%= link_to "home", restaurants_path %>
 </div>

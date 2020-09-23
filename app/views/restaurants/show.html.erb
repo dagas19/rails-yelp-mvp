@@ -13,43 +13,14 @@
       <% @reviews.each do |review| %>
       <ul class="text-decoration-none">
         <li class="text-decoration-none"> <%= review.content %> Rating:
-          <% if review.rating == 1 %>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <% elsif review.rating == 2 %>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <% elsif review.rating == 3 %>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <% elsif review.rating == 4 %>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <% elsif review.rating == 5 %>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <% end %>
+              <% review.rating.times do %> <i class="fas fa-star"></i> <% end %>
+              <% (5 - review.rating).times do %> <i class="far fa-star"></i> <% end %>
            </li>
           </ul>
       <% end %>
    <%= simple_form_for [@restaurant, @review] do |f| %>
           <%= f.input :content %>
-          <%= f.input :rating %>
+          <%= f.input :rating, collection: [1,2,3,4,5] %>
           <%= f.submit "add a review", class: "btn btn-primary" %>
         <% end %>
         <div class="btn btn-success">
