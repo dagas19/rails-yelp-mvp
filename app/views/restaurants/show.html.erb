@@ -1,4 +1,6 @@
 <div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
         <h1><%= @restaurant.name %></h1>
       <hr>
       <p> Address: <%= @restaurant.address %> </p>
@@ -9,10 +11,52 @@
       <hr>
       <h4>Reviews: </h4>
       <% @reviews.each do |review| %>
-        <li> "<%= review.content %>"  <%= review.rating %></li>
+      <ul class="text-decoration-none">
+        <li class="text-decoration-none"> <%= review.content %> Rating:
+          <% if review.rating == 1 %>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <% elsif review.rating == 2 %>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <% elsif review.rating == 3 %>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <% elsif review.rating == 4 %>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <% elsif review.rating == 5 %>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <% end %>
+           </li>
+          </ul>
       <% end %>
-      <br><br>
-      <%= link_to new_restaurant_review_path(@restaurant) do%>
-        <p>Add review</p> -->
-   <% end  %>
+   <%= simple_form_for [@restaurant, @review] do |f| %>
+          <%= f.input :content %>
+          <%= f.input :rating %>
+          <%= f.submit "add a review", class: "btn btn-primary" %>
+        <% end %>
+        <div class="btn btn-success">
+        <%= link_to "home", restaurants_path %>
+        </div>
+    </div>
+  </div>
+</div>
+
 
